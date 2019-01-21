@@ -34,7 +34,7 @@ cmake-build-release/
 
 # IntelliJ
 out/
-*.iml
+.*.iml
 
 
 # mpeltonen/sbt-idea plugin
@@ -385,3 +385,4 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 
+/AMBuildContainer.iml
