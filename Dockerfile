@@ -20,7 +20,7 @@ ENV NUNIT_VERSION 3.9
 ENV NUNIT_BUG_VERSION 0
 RUN New-Item -Type Directory $env:ProgramFiles\NUnit; \
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \
-    Invoke-WebRequest -Uri "https://github.com/nunit/nunit-console/releases/download/v${env:NUNIT_VERSION}/NUnit.Console-${env:NUNIT_VERSION}.${env:NUNIT_VERSION}.zip" -OutFile NUnit.Console.zip; \
+    Invoke-WebRequest -Uri "https://github.com/nunit/nunit-console/releases/download/v${env:NUNIT_VERSION}/NUnit.Console-${env:NUNIT_VERSION}.${env:NUNIT_BUG_VERSION}.zip" -OutFile NUnit.Console.zip; \
     Expand-Archive NUnit.Console.zip -DestinationPath $env:ProgramFiles\NUnit\; \
     Remove-Item -Force NUnit.Console.zip
 
@@ -28,3 +28,6 @@ RUN New-Item -Type Directory $env:ProgramFiles\NUnit; \
 RUN setx /M PATH $(${env:PATH} \
     + \";${env:ProgramFiles}\NUnit\" \
     + \";${env:ProgramFiles}\DocFx\")
+
+RUN New-Item -ItemType directory -Path C:\Build\; \
+    New-Item -ItemType directory -Path C:\Cache\
